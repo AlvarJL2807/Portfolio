@@ -66,38 +66,94 @@
         <pre> </pre>
         
         <h1>Assignment 4: Vegetation Indices</h1>
-        <p class="subtitle">Software Used: QGIS, VSCode, Sentinel Hub</p>
+        <p class="subtitle">Software Used: QGIS, VSCode, Google Earth Engine</p>
 
         <div class="project-layout">
             <div class="project-info">
                 <h3>Course Context & Objective</h3>
                 <p>
-                    In this module, we shifted our focus toward remote sensing and raster analysis. We explored how multispectral imagery captured by satellites can be used to assess environmental conditions on the ground. The objective of this assignment was to calculate and compare different vegetation indices to evaluate plant health, biomass, and land cover types in our study area.
+                    For this assignment, we focused on remote sensing from Satellites. The goal of this assignment was to create a Google Earth Engine account, download data from Sentinel 2 satellites, and use that data to study vegetation growth in an area thanks to true color mosaics and vegetation indices.
                 </p>
                 <pre> </pre>
 
                 <h3>Technical Skills Learned</h3>
                 <ul>
-                    <li>Acquiring and pre-processing satellite imagery (e.g., Sentinel-2 / Landsat).</li>
+                    <li>Obtaining Satellite Imagery from Google Earth Engine.</li>
+                    <li>Assigning different RGB values to different bands.</li>
                     <li>Performing raster math using the QGIS Raster Calculator.</li>
-                    <li>Calculating the Normalized Difference Vegetation Index (NDVI) and other indices.</li>
-                    <li>Applying appropriate color ramps to continuous raster data to highlight ecological variations.</li>
+                    <li>Calculating the Normalized Difference Vegetation Index (NDVI).</li>
+                    <li>Assigning color ramps to raster data to be able to better see ecological variations.</li>
                 </ul>
                 <pre> </pre>
 
                 <h3>Results & Analysis</h3>
                 <p>
-                    The maps on the right showcase four different representations of the study area based on remote sensing data. By manipulating the red and near-infrared (NIR) bands, we can emphasize different characteristics of the landscape. For example, the NDVI map clearly distinguishes between dense, healthy forests (dark green) and urbanized or barren land (red/brown).
+                    The maps below show 6 different representations of the study area (Lac Saint Jean, Quebec). These different maps are different representations of the data from Sentinel 2 satellites, before and after manipulations with the raster calculator. By manipulating the red and near-infrared (NIR) bands, we can show different elements of the landscape, like fields, water, forests, etc.
                 </p>
                 <pre> </pre>
                 <p>
-                    During this assignment, I learned that while NDVI is the standard metric, it can sometimes saturate in areas with very dense biomass. Comparing it with other indices or viewing the raw false-color composite provides a much more comprehensive understanding of the physical Earth processes happening on the ground. 
+                    My biggest challenge for this assignment was downloading the files. The first difficulty was 
+                    finding images that did not have clouds or snow. I ended up finding summer months (July) in 
+                    2018 and 2025 that had no snow. My initial download was 200x200 kilometers 
+                    approximately and had a resolution of 10m per pixel. The files I got were too big, and the 
+                    processing was slow. I ended up starting over, with a much smaller area (50x20km) and a 
+                    resolution of 20m per pixel. It worked much better and I was able to create the files shown 
+                    above.
                 </p>
                 <pre> </pre>
-                <h3>Assignment Questions</h3>
-                <p>1) The main spatial question I was trying to answer was how the distribution of green infrastructure varies across different zones. Using raster math allowed me to quantify what is normally just a qualitative observation.</p>
+                <p>
+                    These maps are not as conclusive as I would have hoped for. I saw that this area was 
+                    suffering heavy deforestation according to Global Forest Watch, but that deforestation was 
+                    not visible on these maps. I think that a potential solution for the future would be to take a 
+                    larger area and a longer time frame. Not having deforestation in this already occupied area 
+                    between 2018 and 2025 is actually not that surprising. Taking a large, forested area during a 
+                    larger time frame would likely show more deforestation.
+                </p>
                 <pre> </pre>
-                <p>2) The first step was downloading cloud-free imagery. Then, I used the QGIS Raster Calculator to apply the standard NDVI formula: <code>(NIR - Red) / (NIR + Red)</code>. After generating the new raster layer, I adjusted the symbology using a diverging color ramp to make the contrast between vegetation and non-vegetation visually intuitive.</p>
+                <h3>Answer to Assignment Questions</h3>
+                <p>
+                    An orthomosaic is the name of the result when you take multiple aerial images, usually from 
+                    a drone, plane, or satellite, and stitch them together to create a larger aerial image that 
+                    covers a wider area. To make a cloudless composite orthomosaic, you need to first identify 
+                    the areas in your imagery that have clouds. Then, you remove those clouded areas and 
+                    replace them with tiles of the same area taken on a clear day. You then try to blend the 
+                    images from different dates together to have a clean, continuous cloudless map. This 
+                    process relies on satellite systems like Sentinel 2, which uses two identical satellites (2a 
+                    and 2b) equipped with multi-spectrum instruments to collect wide swaths of data in 13 
+                    different bands. Sentinel 2a will collect swaths but leave some gaps, and 2b will ideally 
+                    come in after to fill those missing pieces. Every five days, the two satellites manage to 
+                    collect data for the entire world. 
+                </p>
+                <pre> </pre>
+                <p>
+                    This multispectral satellite imagery captures the light reflected from the earth's surface 
+                    across several wavelengths. By collecting wavelengths that are beyond visible light for 
+                    humans, like infrared and near-infrared, we can obtain information about the area that we 
+                    would not be able to see with our naked eyes. This is useful for creating a vegetation index, 
+                    which is a combination of different bands used to track the presence or absence, and health 
+                    of green vegetation like forests or crops. A common example is the Normalized Difference 
+                    Vegetation Index, or NDVI. The formula is NDVI = (NIR – Red) / (NIR + Red). It works by looking 
+                    at how chlorophyll absorbs green wavelengths of light and how a plant's internal structure 
+                    reflects near-infrared light. It uses that formula to give a value between -1 and 1 for each 
+                    pixel, which can then be used to determine vegetation health at that specific spot. You can 
+                    use this in environmental sciences to track deforestation, in agriculture to track crop health, 
+                    or in marine science to track mangrove health and eutrophication, for example. 
+                </p>
+                <pre> </pre>
+                <p>
+                    The time of year matters a lot for creating an orthomosaic for multiple reasons. Firstly, the 
+                    season will affect the weather, which means there are more likely to be clouds covering the 
+                    earth at certain periods. Different seasons will also mean that trees are more or less bare, 
+                    making visible differences between a summer tile and a winter tile no matter how well 
+                    blended they are. This difference in vegetation greenness will also naturally affect the NDVI 
+                    calculations. Finally, different seasons mean the sun will be at a different angle, which 
+                    generally makes winter tiles look paler and more contrasted than summer tiles. All of this 
+                    right is relevant to sustainable development, because the different wavelengths collected 
+                    by the satellites allow us to study environmental behaviors and make measurements or 
+                    predictions about things like forest health, landslide risk, and deforestation, which we must 
+                    be able to measure and understand in order to gain a better understanding of the world we 
+                    live in.
+                </p>
                 <pre> </pre>
             </div>
 
