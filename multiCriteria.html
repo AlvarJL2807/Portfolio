@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multicriteria Analysis</title>
+    <link rel="stylesheet" href="Styles/style.css">
+    
+    <script src="Javascript/map4.js" defer></script>
+
+    <style>
+        .back-link {
+            color: #a22080;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .project-figure {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .project-figure img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .references-section {
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .references-section h3 {
+            margin-bottom: 10px;
+        }
+        .references-section p {
+            font-size: 0.9em;
+            padding-left: 20px;
+            text-indent: -20px;
+            line-height: 1.5;
+        }
+
+        .big-sub-caption {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="img01">
+</div>
+<body>
+
+    <header>
+        <div class="logo-thingy">GIS Portfolio</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="index.html#projects" class="active">Portfolio Works</a>
+        </nav>
+    </header>
+
+    <main class="content-section project-detail">
+        <a href="index.html#projects" class="back-link">&larr; Back to Home</a>
+        <pre> </pre>
+        
+        <h1>Assignment: Multicriteria Analysis</h1>
+        <pre> </pre><pre> </pre>
+
+        <div class="project-layout">
+            <div class="project-info">
+                <h3>Part 1: Understanding Multicriteria Analysis (MCA)</h3>
+                <p>
+                    <strong>1)</strong> Multicriteria analysis is a tool that we can use to solve complex problems involving more than one factor. It allows us to take different types of data such as environmental data, economic data, spatial data, etc. and combine them into a single result to make informed decisions that cover different aspects of life. 
+                </p>
+                <p>
+                    <strong>2)</strong> MCA is valuable in GIS because real-world problems almost always have a spatial element to them. GIS allows us to turn abstract criteria into concrete, easy-to-understand data layers. This ability to combine spatial data with other types of information is the core definition of multicriteria analysis.
+                </p>
+                <p>
+                    <strong>3)</strong> Multicriteria analysis is great for answering spatial questions where, rather than having a single best solution, there are different solutions, each with their own upsides and downsides. Questions like <em>"which parts of a city need to be greener"</em> require MCA to arrive at an optimal solution.
+                </p>
+
+                <div class="project-figure">
+                    <img src="Media/Corvi.png" alt="A graph showing the different types of risks that can be considered in multicriteria analyses." id="mcaImg">
+                    <div class="big-sub-caption">
+                        Figure 1: A graph showing the different types of risks that can be considered in multicriteria analyses. (Gruber et al., 2025)
+                    </div>
+                </div>
+
+                <pre> </pre>
+
+                <h3>Part 2: Designing an MCA Workflow</h3>
+                <pre> </pre>
+                <p>
+                    <strong>Project Goal:</strong> To find the best place to install a solar farm in a semi-urban, semi-rural environment.
+                </p>
+                <pre> </pre>
+                <h4>Criteria for Consideration:</h4>
+                <ul>
+                    <li><strong>The Slope:</strong> Flat land or south-facing slopes are best to catch as much sunlight as possible with the solar panels.</li>
+                    <li><strong>Solar Energy:</strong> Places with the highest annual solar radiation are preferred over cloudy or dark regions.</li>
+                    <li><strong>Distance to Nearby Cities and Electric Grids:</strong> Being close to an urban hub makes it easier and cheaper to provide electricity to that community without spending too much on electrical infrastructure.</li>
+                    <li><strong>Land Cover Type:</strong> Land is better than sea for a solar farm, and open fields or barren land are generally better than a forest to avoid deforestation and reduce the environmental and financial costs of installation.</li>
+                </ul>
+                <pre> </pre><pre> </pre>
+                <h4>Required Data Layers:</h4>
+                <ul>
+                    <li>Digital Elevation Model (DEM) to evaluate land flatness or south-facing slopes.</li>
+                    <li>Solar radiation raster map to identify areas with the most annual sunlight.</li>
+                    <li>Land cover map to avoid installing the farm in a forest, city, or body of water.</li>
+                    <li>Map of existing power infrastructure to connect efficiently to the existing grid.</li>
+                </ul>
+                <pre> </pre><pre> </pre>
+                <h4>Workflow Implementation Steps:</h4>
+                <ol>
+                    <li><strong>Data Preparation:</strong> Collecting all the data and cleaning it up so it is tidy, in a common format, and ready to be used.</li>
+                    <li><strong>Analysis of the Problem:</strong> Calculating distances to nearby grids, cities, and forests.</li>
+                    <li><strong>Setting Constraints:</strong> Removing all lakes, forests, mountains, etc., from the active dataset.</li>
+                    <li><strong>Reclassifying Data:</strong> Normalizing data layers into a common scale of values.</li>
+                    <li><strong>Assigning Weights:</strong> Weighting every criterion according to its relative importance.</li>
+                    <li><strong>Suitability Assessment:</strong> Multiplying the constraints by the suitability rating, removing incompatible areas, and generating a final map of potential installation locations based on the weighted criteria.</li>
+                </ol>
+                <pre> </pre>
+                <p>
+                    There will likely be tradeoffs (for example, a place may have barren land but faces slightly north, or a place might be facing south but sits far from the nearest city). MCA must be used to determine which tradeoff is the least harmful to the overall project.
+                </p>
+
+                <div class="references-section">
+                    <h3>References</h3>
+                    <p>
+                        Gruber, C., Fiertz, N., Rouleau, T., MacMurray, M., & Risi, L. H. (2025, November 3). <em>CORVI: Measuring Multidimensional Climate Risks in Aruba</em>. Stimson Center. https://www.stimson.org/2025/corvi-measuring-multidimensional-climate-risks-in-aruba/
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p> &copy; Alvar Jolin-Lombardini 2026.</p>
+    </footer>
+
+</body>
+</html>
