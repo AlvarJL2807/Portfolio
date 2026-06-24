@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Get the modal elements
+
     const modal = document.getElementById("myModal");
     const modalImg = document.getElementById("img01");
     const span = document.getElementsByClassName("close")[0];
